@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="hi" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>प्रेममय भक्ति वेबसाइट</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts and Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Noto Sans', sans-serif;
+        }
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 5px;
+        }
+        .dark ::-webkit-scrollbar-track { background: #2d3748; }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+        .dark ::-webkit-scrollbar-thumb { background: #6366f1; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+        .dark ::-webkit-scrollbar-thumb:hover { background: #4f46e5; }
+
+        /* Time-based Themes */
+        body.morning {
+            background: linear-gradient(135deg, #FFDAB9, #FFEFD5);
+            color: #333;
+        }
+        body.evening {
+            background: linear-gradient(135deg, #8A2BE2, #4B0082);
+            color: #f0f0f0;
+        }
+        body.night {
+            background: linear-gradient(135deg, #1A202C, #2D3748);
+            color: #e2e8f0;
+        }
+        body.dark {
+            background: linear-gradient(135deg, #1A202C, #2D3748);
+            color: #e2e8f0;
+        }
+
+        .dark .bg-white { background-color: #2d3748; }
+        .dark .text-gray-800 { color: #e2e8f0; }
+        .dark .border-indigo-200 { border-color: #4a5568; }
+        .dark .text-indigo-800 { color: #a78bfa; }
+        .dark .bg-indigo-700 { background-color: #7c3aed; }
+        .dark .bg-indigo-700:hover { background-color: #6d28d9; }
+        .dark .shadow-lg {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3),
+                        0 4px 6px -2px rgba(0, 0, 0, 0.15);
+        }
+        .dark .shadow-inner {
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        /* Loader Styles */
+        #loader-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease-out;
+        }
+        .loader-spinner {
+            border: 8px solid #f3f3f3;
+            border-top: 8px solid #FFD700;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .loader-text {
+            color: #fff;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .sakhi-loader-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            animation: pulse-loader 1.5s infinite alternate;
+        }
+        @keyframes pulse-loader {
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7); }
+            100% { transform: scale(1.05); box-shadow: 0 0 0 20px rgba(255, 215, 0, 0); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 transition-colors duration-300">
+    <!-- Sakhi Loader Overlay -->
+    <div id="loader-overlay">
+        <img src="https://placehold.co/150x150/FFD700/8A2BE2?text=Sakhi" alt="Sakhi Loader" class="sakhi-loader-image mb-4">
+        <div class="loader-spinner"></div>
+        <div class="loader-text">प्रेम रस की प्रतीक्षा...</div>
+    </div>
+<!-- Header Section (Navbar) -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-purple-800 to-indigo-900 text-white py-4 shadow-lg dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
+        <div class="container mx-auto flex justify-between items-center px-4">
+            <a href="#home" class="flex items-center space-x-2 text-3xl font-bold tracking-wide">
+                <i class="fas fa-heart text-red-400"></i>
+                <span class="text-yellow-300">प्रेममय भक्ति</span>
+            </a>
+            <nav class="hidden md:flex space-x-6">
+                <a href="#home" class="hover:text-yellow-300 transition-colors duration-200 text-lg">मुखपृष्ठ</a>
+                <a href="#daily-quote" class="hover:text-yellow-300 transition-colors duration-200 text-lg">आज का वचन</a>
+                <a href="#bhakti-calendar" class="hover:text-yellow-300 transition-colors duration-200 text-lg">पंचांग</a>
+                <a href="#bhakt-charitra" class="hover:text-yellow-300 transition-colors duration-200 text-lg">भक्त चरित्र</a>
+                <a href="#contact" class="hover:text-yellow-300 transition-colors duration-200 text-lg">संपर्क</a>
+            </nav>
+            <button id="theme-toggle" class="p-2 rounded-full bg-indigo-700 hover:bg-indigo-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <i class="fas fa-moon text-white text-xl" id="theme-icon"></i>
+            </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white text-3xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-indigo-900 bg-opacity-95 z-50 hidden md:hidden flex-col items-center justify-center space-y-8 text-white text-2xl">
+        <button id="close-mobile-menu" class="absolute top-6 right-6 text-white text-4xl focus:outline-none">
+            <i class="fas fa-times"></i>
+        </button>
+        <a href="#home" class="hover:text-yellow-300 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">मुखपृष्ठ</a>
+        <a href="#daily-quote" class="hover:text-yellow-300 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">आज का वचन</a>
+        <a href="#bhakti-calendar" class="hover:text-yellow-300 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">पंचांग</a>
+        <a href="#bhakt-charitra" class="hover:text-yellow-300 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">भक्त चरित्र</a>
+        <a href="#contact" class="hover:text-yellow-300 transition-colors duration-200" onclick="document.getElementById('mobile-menu').classList.add('hidden')">संपर्क</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="min-h-screen flex items-center justify-center text-center px-4 pt-24 pb-12">
+        <div class="container mx-auto">
+            <h1 class="text-6xl font-extrabold text-indigo-800 dark:text-indigo-300 mb-6 leading-tight animate-fade-in-up">
+                <span class="text-yellow-400">श्रीकृष्ण</span> प्रेम रस में डूबो
+            </h1>
+            <p class="text-2xl text-gray-700 dark:text-gray-300 mb-10 animate-fade-in-up animation-delay-200">
+                भक्ति, सेवा और आनंद की यात्रा पर आपका स्वागत है।
+            </p>
+            <a href="#daily-quote" class="bg-indigo-700 text-white px-8 py-4 rounded-full text-lg font-semibold hover:bg-indigo-800 transition-all duration-300 transform hover:scale-105 shadow-lg animate-fade-in-up animation-delay-400">
+                आज का वचन देखें <i class="fas fa-arrow-down ml-2"></i>
+            </a>
+        </div>
+    </section>
+<!-- Daily Quote Section -->
+    <section id="daily-quote" class="py-16 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-indigo-800 dark:text-indigo-300 mb-10">
+                आज का वचन <i class="fas fa-quote-right ml-2 text-yellow-500"></i>
+            </h2>
+            <div class="bg-white dark:bg-gray-700 p-8 rounded-2xl shadow-xl border border-indigo-200 dark:border-gray-600 max-w-3xl mx-auto transform hover:scale-[1.01] transition-all duration-300">
+                <p id="daily-quote-text" class="text-2xl italic text-gray-700 dark:text-gray-200 mb-4">
+                    "लोड हो रहा है... कृपया प्रतीक्षा करें।"
+                </p>
+                <p id="daily-quote-author" class="text-lg font-semibold text-indigo-700 dark:text-indigo-400">
+                    - प्रेममय भक्ति
+                </p>
+            </div>
+            <button id="refresh-quote-btn" class="mt-8 bg-indigo-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-md">
+                नया वचन देखें <i class="fas fa-sync-alt ml-2"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Bhakti Calendar Section -->
+    <section id="bhakti-calendar" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-indigo-800 dark:text-indigo-300 mb-10">
+                भक्ति पंचांग <i class="fas fa-calendar-alt ml-2 text-purple-500"></i>
+            </h2>
+            <div class="bg-indigo-50 dark:bg-gray-700 p-8 rounded-2xl shadow-xl border border-indigo-200 dark:border-gray-600 max-w-3xl mx-auto">
+                <p class="text-xl text-gray-700 dark:text-gray-200 mb-4">आज की तिथि:</p>
+                <p id="current-date-display" class="text-3xl font-bold text-indigo-700 dark:text-indigo-400 mb-6">
+                    लोड हो रहा है...
+                </p>
+                <h3 class="text-2xl font-semibold text-gray-800 dark:text-gray-100 mb-4">आज के व्रत और त्यौहार:</h3>
+                <ul id="today-events-list" class="text-lg text-gray-700 dark:text-gray-300 space-y-2">
+                    <li>लोड हो रहा है...</li>
+                </ul>
+                <p class="mt-6 text-sm text-gray-500 dark:text-gray-400">
+                    (यह एक सरलीकृत डेमो है। वास्तविक पंचांग के लिए बाहरी API की आवश्यकता होगी।)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bhakt Charitra Section -->
+    <section id="bhakt-charitra" class="py-16 bg-gradient-to-r from-purple-50 to-indigo-50 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-indigo-800 dark:text-indigo-300 mb-10">
+                भक्त चरित्र <i class="fas fa-book-reader ml-2 text-green-500"></i>
+            </h2>
+            <p class="text-xl text-gray-700 dark:text-gray-300">
+                यहां हमारे प्यारे संतों के जीवन परिचय और प्रेरणादायक कहानियाँ होंगी। (जल्द आ रहा है!)
+            </p>
+        </div>
+    </section>
+<!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-4xl font-bold text-indigo-800 dark:text-indigo-300 mb-10">
+                संपर्क करें <i class="fas fa-envelope ml-2 text-blue-500"></i>
+            </h2>
+            <p class="text-xl text-gray-700 dark:text-gray-300">
+                हमसे जुड़ने के लिए जल्द ही संपर्क फ़ॉर्म और विवरण उपलब्ध होंगे। (जल्द आ रहा है!)
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-gray-900 text-gray-300 py-8 text-center dark:bg-gray-950">
+        <div class="container mx-auto px-4">
+            <p>&copy; 2025 प्रेममय भक्ति। सभी अधिकार सुरक्षित।</p>
+            <p class="mt-2 text-sm">
+                गोपनीयता नीति | सेवा की शर्तें
+            </p>
+            <div class="flex justify-center space-x-6 mt-4">
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 text-xl"><i class="fab fa-facebook"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 text-xl"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-400 hover:text-white transition-colors duration-200 text-xl"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Audio for Bell Sound -->
+    <audio id="bell-sound" src="https://www.soundjay.com/buttons/sounds/button-10.mp3" preload="auto"></audio>
+
+    <!-- JavaScript File -->
+    <script src="script.js"></script>
+
+    <!-- Theme Toggle Script -->
+    <script>
+        const themeToggle = document.getElementById("theme-toggle");
+        const themeIcon = document.getElementById("theme-icon");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            if (document.body.classList.contains("dark")) {
+                themeIcon.classList.remove("fa-moon");
+                themeIcon.classList.add("fa-sun");
+            } else {
+                themeIcon.classList.remove("fa-sun");
+                themeIcon.classList.add("fa-moon");
+            }
+        });
+
+        // Mobile menu script
+        const mobileMenuBtn = document.getElementById("mobile-menu-button");
+        const closeMobileMenuBtn = document.getElementById("close-mobile-menu");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.remove("hidden");
+        });
+
+        closeMobileMenuBtn.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+        });
+
+        // Loader Hide on Load
+        window.addEventListener("load", () => {
+            document.getElementById("loader-overlay").style.opacity = "0";
+            setTimeout(() => {
+                document.getElementById("loader-overlay").style.display = "none";
+            }, 500);
+        });
+// Daily Quote API Simulation (Replace with actual API call)
+        document.getElementById("refresh-quote-btn").addEventListener("click", () => {
+            const quotes = [
+                { text: "श्रीकृष्ण का नाम ही सभी दुखों की औषधि है।", author: "रासप्रेम" },
+                { text: "जहाँ प्रेम है वहाँ कृष्ण स्वयं प्रकट होते हैं।", author: "भक्त वचन" },
+                { text: "भक्ति की राह सबसे मधुर और सरल है।", author: "प्रेम सुधा" },
+                { text: "प्रेम ही कृष्ण की सबसे प्रिय भेंट है।", author: "रसिक संत" }
+            ];
+            const random = Math.floor(Math.random() * quotes.length);
+            document.getElementById("daily-quote-text").textContent = `"${quotes[random].text}"`;
+            document.getElementById("daily-quote-author").textContent = `- ${quotes[random].author}`;
+            document.getElementById("bell-sound").play();
+        });
+
+        // Set current date in calendar
+        const today = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        document.getElementById("current-date-display").textContent = today.toLocaleDateString('hi-IN', options);
+        document.getElementById("today-events-list").innerHTML = `
+            <li>🌸 एकादशी व्रत</li>
+            <li>🌼 वृन्दावन दर्शन पर्व</li>
+            <li>🌺 श्री नाम जप महोत्सव</li>
+        `;
+
+        // Time-Based Theme Loader
+        const hour = today.getHours();
+        if (hour >= 5 && hour < 12) {
+            document.body.classList.add("morning");
+        } else if (hour >= 12 && hour < 18) {
+            document.body.classList.add("evening");
+        } else {
+            document.body.classList.add("night");
+        }
+
+        // End of Script
+    </script>
+</body>
+</html>
